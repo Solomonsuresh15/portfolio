@@ -1,0 +1,74 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Cormorant Garamond", serif;
+  --font-mono: "Space Mono", monospace;
+  --color-gold: #D4AF37;
+  --color-champagne: #F7E7CE;
+  --color-crimson: #8B0000;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    background-color: #000;
+    color: #fff;
+  }
+  
+  body {
+    @apply font-sans antialiased overflow-x-hidden;
+  }
+
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 999;
+    pointer-events: none;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 0, 0, 0.03) 2px,
+      rgba(0, 0, 0, 0.03) 4px
+    );
+  }
+}
+
+.luxury-text-gradient {
+  @apply text-transparent bg-clip-text bg-gradient-to-b from-champagne to-gold/40;
+}
+
+.luxury-border {
+  @apply border border-gold/10 backdrop-blur-sm;
+}
+
+.luxury-card {
+  @apply bg-zinc-900/40 border border-white/5 backdrop-blur-md rounded-2xl transition-all duration-500 hover:border-gold/20 hover:bg-zinc-900/60;
+}
+
+.gold-glow {
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.1);
+}
+
+.crimson-glow {
+  box-shadow: 0 0 30px rgba(139, 0, 0, 0.2);
+}
+
+@keyframes scanline {
+  0% { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+
+.scanline {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100px;
+  background: linear-gradient(to bottom, transparent, rgba(212, 175, 55, 0.05), transparent);
+  animation: scanline 8s linear infinite;
+  pointer-events: none;
+}
